@@ -48,12 +48,7 @@ namespace ReflectHelper
                                     name = Name
                                 });
                             }
-                            dependencies.Add(new EnumDependency()
-                            {
-                                propInfo = propInfos[i],
-                                showType = PropShowType.ENUM,
-                                EnumStructList = enumStructs
-                            });
+                            dependencies.Add(new EnumDependency(propInfos[i], PropShowType.ENUM, enumStructs));
                             break;
                         }
 
@@ -72,11 +67,7 @@ namespace ReflectHelper
                         }
 
                         //自定义类或者其他类
-                        dependencies.Add(new ClassDependency()
-                        {
-                            propInfo = propInfos[i],
-                            showType = PropShowType.CLASS,
-                        });
+                        dependencies.Add(new ClassDependency(propInfos[i], PropShowType.CLASS));
                         ////自定义类或者其他类
                         //object propObj = null;
                         //propObj = info.GetValue(instance, null);

@@ -114,8 +114,9 @@ namespace ReflectHelper
 
         public List<EnumStruct> EnumStructList;
 
-        public EnumDependency(PropertyInfo propertyInfo, PropShowType type) : base(propertyInfo, type)
+        public EnumDependency(PropertyInfo propertyInfo, PropShowType type, List<EnumStruct> enumStructList) : base(propertyInfo, type)
         {
+            EnumStructList = enumStructList;
         }
     }
 
