@@ -33,6 +33,13 @@ namespace ReflectHelper
 
     public class Dependency
     {
+        public Dependency(PropertyInfo propertyInfo, PropShowType type)
+        {
+            propInfo = propertyInfo;
+            showType = type;
+
+        }
+
         public Dependency Parent;
 
         public List<Dependency> Children;
@@ -69,6 +76,14 @@ namespace ReflectHelper
 
     public class ListDependency : Dependency
     {
+        public ListDependency(PropertyInfo prop ,PropShowType type) : base(prop, type)
+        {
+            ReflectCore rc = new ReflectCore();
+            GenericDependency =rc.ReflectProperty(GenericType);
+        }
+
+        public List<Dependency> GenericDependency;
+
         public Type GenericType
         {
             get
@@ -82,15 +97,35 @@ namespace ReflectHelper
                 return type;
             }
         }
+
+        public List<T> CreateListInstance<T>(Type t)
+        {
+            MethodInfo mi = typeof(ListDependency).GetMethod("MakeList", BindingFlags.NonPublic).MakeGenericMethod(t);
+            return mi.Invoke(this,null) as List<T>;
+        }
+
+        List<T> MakeList<T>(){
+            return new List<T>();
+        }
     }
 
     public class EnumDependency : Dependency
     {
+
         public List<EnumStruct> EnumStructList;
+
+        public EnumDependency(PropertyInfo propertyInfo, PropShowType type) : base(propertyInfo, type)
+        {
+        }
     }
 
     public class ClassDependency : Dependency
     {
+        public ClassDependency(PropertyInfo propertyInfo, PropShowType type) : base(propertyInfo, type)
+        {
+
+        }
+
         public override object GetValue()
         {
             //return base.GetValue();

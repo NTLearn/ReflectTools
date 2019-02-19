@@ -15,7 +15,7 @@ namespace ReflectHelper
             foreach(var d in dependencies)
             {
                 Console.WriteLine(d.ToString());
-            }
+            } 
                 Console.ReadKey();
         }
 

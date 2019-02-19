@@ -61,21 +61,13 @@ namespace ReflectHelper
                         if (typeof(IList).IsAssignableFrom(propType) && propType.IsGenericType)//ArrayList也实现IList，但没有泛型，会出错。ArrayList可以添加任何对象，暂时不做
                         {
                             Type genericType = propType.GetGenericArguments()[0];
-                            dependencies.Add(new ListDependency()
-                            {
-                                propInfo = propInfos[i],
-                                showType = PropShowType.LIST,
-                            });
+                            dependencies.Add(new ListDependency(propInfos[i], PropShowType.LIST));
                             break;
                         }
 
                         if (propType.IsPrimitive || propType == typeof(string))
                         {
-                            dependencies.Add(new Dependency()
-                            {
-                                propInfo = propInfos[i],
-                                showType = PropShowType.PRIMITIVE,
-                            });
+                            dependencies.Add(new Dependency(propInfos[i], PropShowType.PRIMITIVE));
                             break;
                         }
 
@@ -117,7 +109,7 @@ namespace ReflectHelper
                     Dependency dependency = dependencies.Find(item => {
                         return item.propType.Equals(propType);
                     });
-                    propInfos[i].SetValue(_instance, dependency.Value);
+                    propInfos[i].SetValue(_instance, dependency.Value,null);
                 }
             }
 
