@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
 
 namespace ReflectHelper
 {
@@ -15,6 +12,18 @@ namespace ReflectHelper
     *  版本：V1.0.1  
     *  说明： 
     ========================================*/
+
+        public enum Number
+    {
+        One,
+        Two,
+        Three,
+        Four,
+        Five,
+        Six,
+        Seven
+    }
+
     public class TestClass
     {
         public string str1 { get; set; }
@@ -41,6 +50,7 @@ namespace ReflectHelper
         public int int3 { get; set; }
         public List<TestFourthClass> ListFourth3 { get; set; }
         public string str3 { get; set; }
+        public Number number3 { get; set; }
     }
 
     public class TestFourthClass

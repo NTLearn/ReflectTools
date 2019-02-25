@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReflectHelper.UIModule;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,11 +13,15 @@ namespace ReflectHelper
         {
             List<Dependency> dependencies = new List<Dependency>();
             dependencies = GetDependencyProp(typeof(TestClass));
-            foreach(var d in dependencies)
+            UIPainter painter = new UIPainter();
+            //设置绘制工具
+            painter.SetUiTool(null);
+            painter.Draw(dependencies);
+            foreach (var d in dependencies)
             {
                 Console.WriteLine(d.ToString());
-            } 
-                Console.ReadKey();
+            }
+            Console.ReadKey();
         }
 
         public static List<Dependency> GetDependencyProp(Type type)

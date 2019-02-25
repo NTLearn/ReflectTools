@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReflectHelper.UIModule
 {
@@ -14,7 +10,7 @@ namespace ReflectHelper.UIModule
         /// <summary>
         /// 当前item对应的UI
         /// </summary>
-        public object Controls;
+        public UIControls Controls;
 
         /// <summary>
         /// 当前item对应的依赖
@@ -26,7 +22,24 @@ namespace ReflectHelper.UIModule
         /// </summary>
         public void SetValue()
         {
-
+            if(Controls == null)
+            {
+                return;
+            }
+            object obj = null;
+            if (Controls.GetValueHandle != null){
+                obj = Controls.GetValueHandle.Invoke(Controls.Contols);
+            }
+            mDependency.Value = obj;
         }
+    }
+
+    public class UIControls
+    {
+        public delegate object GetValue(object value);
+
+        public object Contols;
+
+        public GetValue GetValueHandle;
     }
 }

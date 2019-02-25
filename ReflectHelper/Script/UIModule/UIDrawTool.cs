@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReflectHelper.UIModule
 {
@@ -11,6 +8,13 @@ namespace ReflectHelper.UIModule
     /// </summary>
     public abstract class UIDrawTool
     {
+        public abstract UIControls DrawListInputArea<T>(string name,object list,Func<UIControls> addItemHandler);
 
+        public abstract UIControls DrawClassInputArea(string name, object value);
+
+        public abstract UIControls DrawPrimativeInputArea(string name, object value);
+
+        public abstract UIControls DrawEnumInputArea(string name, object value, List<EnumStruct> enumInfoList);
     }
+
 }
